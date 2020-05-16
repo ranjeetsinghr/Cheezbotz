@@ -1,0 +1,51 @@
+Code created by Mahdi Huda 16/5/2020 3:44 p.m.
+
+
+
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.TouchSensor;
+
+@TeleOp(name = "TouchDCMotor (Blocks to Java)", group = "")
+public class TouchDCMotor extends LinearOpMode {
+
+  private DcMotor RL_Motor;
+  private DcMotor RR_Motor;
+  private TouchSensor TSensor1;
+
+  /**
+   * This function is executed when this Op Mode is selected from the Driver Station.
+   */
+  @Override
+  public void runOpMode() {
+    RL_Motor = hardwareMap.dcMotor.get("RL_Motor");
+    RR_Motor = hardwareMap.dcMotor.get("RR_Motor");
+    TSensor1 = hardwareMap.touchSensor.get("TSensor1");
+
+    // Put initialization blocks here.
+    RL_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
+    RR_Motor.setDirection(DcMotorSimple.Direction.FORWARD);
+    waitForStart();
+    if (opModeIsActive()) {
+      // Put run blocks here.
+      while (opModeIsActive()) {
+        RR_Motor.setPower(1);
+        RL_Motor.setPower(1);
+        sleep(1000);
+        if (TSensor1.isPressed()) {
+          RL_Motor.setPower(-1);
+          RR_Motor.setPower(-1);
+          sleep(1000);
+          RL_Motor.setPower(-1);
+          RR_Motor.setPower(1);
+          sleep(1000);
+          RR_Motor.setPower(1);
+          RL_Motor.setPower(1);
+          sleep(5000);
+        }
+      }
+    }
