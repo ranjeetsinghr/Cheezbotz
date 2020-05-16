@@ -1,0 +1,48 @@
+package org.firstinspires.ftc.teamcode;
+
+import android.graphics.Color;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org.firstinspires.ftc.robotcore.external.JavaUtil;
+
+@Autonomous(name = "AbhaAnshulColorSensor (Blocks to Java)", group = "")
+public class AbhaAnshulColorSensor extends LinearOpMode {
+
+  private DcMotor RL_Motor;
+  private ColorSensor Color_D_1;
+  private DcMotor RR_Motor;
+
+  /**
+   * This function is executed when this Op Mode is selected from the Driver Station.
+   */
+  @Override
+  public void runOpMode() {
+    int CurrentColor;
+
+    RL_Motor = hardwareMap.dcMotor.get("RL_Motor");
+    Color_D_1 = hardwareMap.colorSensor.get("Color_D_1");
+    RR_Motor = hardwareMap.dcMotor.get("RR_Motor");
+
+    // Put initialization blocks here.
+    RL_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
+    Color_D_1.enableLed(false);
+    sleep(500);
+    Color_D_1.enableLed(true);
+    waitForStart();
+    RL_Motor.setPower(0.3);
+    RR_Motor.setPower(0.3);
+    while (opModeIsActive()) {
+      // Put loop blocks here.
+      CurrentColor = Color.rgb(Color_D_1.red(), Color_D_1.green(), Color_D_1.blue());
+      if (JavaUtil.colorToSaturation(CurrentColor) >= 0.6 && JavaUtil.colorToHue(CurrentColor) > 210 && JavaUtil.colorToHue(CurrentColor) == 275) {
+        RL_Motor.setPower(0);
+        RR_Motor.setPower(0);
+        Color_D_1.enableLed(false);
+      }
+      telemetry.update();
+    }
+  }
+}
