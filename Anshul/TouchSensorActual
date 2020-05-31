@@ -1,0 +1,61 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+@Autonomous(name = "ABHAANSHULTOUCHSENSOR (Blocks to Java)", group = "")
+public class ABHAANSHULTOUCHSENSOR extends LinearOpMode {
+
+  private DcMotor RL_Motor;
+  private DcMotor RR_Motor;
+
+  /**
+   * This function is executed when this Op Mode is selected from the Driver Station.
+   */
+  @Override
+  public void runOpMode() {
+    RL_Motor = hardwareMap.dcMotor.get("RL_Motor");
+    RR_Motor = hardwareMap.dcMotor.get("RR_Motor");
+
+    // Put initialization blocks here.
+    RL_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
+    waitForStart();
+    // Put run blocks here.
+    RL_Motor.setPower(1);
+    RR_Motor.setPower(1);
+    sleep(1000);
+    if (opModeIsActive()) {
+      RL_Motor.setPower(-1);
+      RR_Motor.setPower(-1);
+      sleep(1000);
+      RL_Motor.setPower(-1);
+      RR_Motor.setPower(1);
+      sleep(1000);
+      RL_Motor.setPower(1);
+      RR_Motor.setPower(1);
+      sleep(1000);
+      RL_Motor.setPower(0);
+      RR_Motor.setPower(0);
+      sleep(1000);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
