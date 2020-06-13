@@ -1,0 +1,302 @@
+package org.firstinspires.ftc.teamcode;
+
+import android.graphics.Color;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org.firstinspires.ftc.robotcore.external.JavaUtil;
+
+@TeleOp(name = "ABHAREALCOLORSENSOR (Blocks to Java)", group = "")
+public class ABHAREALCOLORSENSOR extends LinearOpMode {
+
+  private DcMotor RL_Motor;
+  private ColorSensor Color_D_1;
+  private DcMotor RR_Motor;
+
+  /**
+   * This function is executed when this Op Mode is selected from the Driver Station.
+   */
+  @Override
+  public void runOpMode() {
+    int CurrentColor;
+    int _7BcolorVariable_7D;
+
+    RL_Motor = hardwareMap.dcMotor.get("RL_Motor");
+    Color_D_1 = hardwareMap.colorSensor.get("Color_D_1");
+    RR_Motor = hardwareMap.dcMotor.get("RR_Motor");
+
+    // Put initialization blocks here.
+    RL_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
+    Color_D_1.enableLed(false);
+    sleep(500);
+    Color_D_1.enableLed(true);
+    waitForStart();
+    RL_Motor.setPower(0.3);
+    RR_Motor.setPower(0.3);
+    while (opModeIsActive()) {
+      // Put loop blocks here.
+      CurrentColor = Color.rgb(Color_D_1.red(), Color_D_1.green(), Color_D_1.blue());
+      if (JavaUtil.colorToSaturation(_7BcolorVariable_7D) == 0.6 && JavaUtil.colorToHue(_7BcolorVariable_7D) > 210 && JavaUtil.colorToHue(_7BcolorVariable_7D) < 275) {
+        RL_Motor.setPower(0);
+        RR_Motor.setPower(0);
+        Color_D_1.enableLed(false);
+      }
+      telemetry.update();
+    }
+  }
+}
+LinearOpMode
+Gamepad
+Actuators
+Sensors
+Other Devices
+Android
+Utilities
+
+Logic
+Loops
+Math
+Text
+Lists
+Variables
+Functions
+Miscellaneous
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Direction
+.
+
+REVERSE ▾
+
+
+
+false ▾
+
+
+
+500
+
+
+
+true ▾
+
+
+
+
+0.3
+
+
+0.3
+
+
+call
+
+ABHAREALCOLORSENSOR
+.
+
+opModeIsActive
+
+
+
+
+
+Color_D_1 ▾
+.
+
+Red ▾
+
+
+Color_D_1 ▾
+.
+
+Green ▾
+
+
+Color_D_1 ▾
+.
+
+Blue ▾
+call
+
+Color
+.
+
+rgbToColor
+red
+green
+blue
+
+
+
+
+
+
+
+{colorVariable} ▾
+
+Color
+.
+
+Saturation ▾
+color
+
+
+0.6
+
+= ▾
+
+
+
+
+
+{colorVariable} ▾
+
+Color
+.
+
+Hue ▾
+color
+
+
+210
+
+‏> ▾
+
+
+
+
+{colorVariable} ▾
+
+Color
+.
+
+Hue ▾
+color
+
+
+275
+
+‏< ▾
+
+and ▾
+
+and ▾
+
+
+
+0
+
+
+0
+
+
+
+false ▾
+call
+
+Color_D_1 ▾
+.
+
+enableLed
+enable
+set
+
+Power ▾
+
+RL_Motor ▾
+to
+
+RR_Motor ▾
+to
+
+call
+
+Telemetry
+.
+
+update
+if
+do
+set
+
+CurrentColor ▾
+to
+
+Put loop blocks here.
+repeat
+
+while ▾
+do
+set
+
+Power ▾
+
+RL_Motor ▾
+to
+
+RR_Motor ▾
+to
+call
+
+ABHAREALCOLORSENSOR
+.
+
+waitForStart
+call
+
+Color_D_1 ▾
+.
+
+enableLed
+enable
+call
+
+ABHAREALCOLORSENSOR
+.
+
+sleep
+milliseconds
+call
+
+Color_D_1 ▾
+.
+
+enableLed
+enable
+set
+
+RL_Motor ▾
+.
+
+Direction ▾
+to
+
+Put initialization blocks here.
+to
+
+runOpMode
+ 
+
+This function is executed when this Op Mode is selected from the Driver Station.
+
+
+
+
+
+
+
+
